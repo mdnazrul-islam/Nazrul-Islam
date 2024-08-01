@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>আয়ের হিসাব সমূহ</title>
+  <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/nazrul.png?alt=media&token=f4c829f1-6e1f-4413-b8e7-3f56a8943979" title="" type="" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+      <style>
+    body {
+      font-family: serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      zoom: 3;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+    p{
+     margin: 20px;
+     border: 0.5px dotted gray;
+     padding: 6px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: %;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="date"], input[type="number"], input[type="button"] {
+      width: 80%;
+      padding: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input[type="button"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 70%;
+      margin: 10px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: ;
+      box-shadow: 0px 0px 5px ,
+                   -0px -0px 5px;
+      border: none;
+      padding: 5px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 9px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #88ffaa;
+    }
+    h2{
+     text-align: center;
+    }
+
+    #displayArea {
+      margin-top: 30px;
+      text-align: left;
+      font-size: 18px;
+      color: #333;
+      
+    }
+
+    #displayArea > p { /* Style for the summary data */
+      font-size: 20px;
+      margin-top: px;
+      font-weight: 500;
+    }
+    
+      #myForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+  }
+  /* Close button */
+.closebtn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: red;
+  font-size: 30px;
+  cursor: pointer;
+}
+img{
+        height: 80px;
+        width: 80px;
+        padding: 2.5px;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 1px 1px 20px ,
+                   -1px -1px 20px ;
+        margin-top: 0px;
+        
+      }
+      .pm{
+        padding-bottom: 14px;
+        padding-top: 14px;
+        height: 88%;
+        width: 92%;
+        background-color: none;
+        margin-left: 4%;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px ,
+                   -0px -0px 10px;
+        font-size: 25px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        font-family: ;
+      }
+      select{
+       margin-bottom: 20px;
+       padding: 5px;
+       height: 40px;
+       width: 59%;
+       background-color: ;
+       font-family: serif;
+       border: 0.5px solid ;
+       font-size: 30px;
+       border-radius: 5px;
+      }
+      textarea{
+       margin-bottom: 50px;
+       padding: 8px;
+       height: 250px;
+       width: 75%;
+       background-color: #f4f4f4;
+       color: ;
+       border:  0.2px dotted ;
+       font-size: 20px;
+       font-family: Serif;
+      }
+      
+      .tw{
+       margin-bottom: 10px;
+      }
+  </style>
+</head>
+<body>
+  <img id="clickTarget" src="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/nazrul.png?alt=media&token=f4c829f1-6e1f-4413-b8e7-3f56a8943979" alt="" />
+  <div class="pm">
+    MD NAZRUL ISLAM
+  </div>
+
+  <div id="myForm" class="">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+    <form id="uploadForm">
+      <label for="text1">Date:</label>
+      <input type="date" id="text1" name="text1" required="required">
+
+      <label for="text2">Half:</label>
+      <input type="number" id="text2" name="text2">
+
+      <label for="text3">Full:</label>
+      <input type="number" id="text3" name="text3">
+
+      <label for="text4">Paid:</label>
+      <input type="number" id="text4" name="text4" required="required">
+
+      <input type="hidden" id="text5" name="text5"> 
+      <input type="hidden" id="text6" name="text6">  
+
+      <input type="button" value="Upload" onclick="uploadData()">
+    </form>
+  </div>
+
+  <div id="displayArea"></div>
+  <h2>পূর্ববর্তী হিসাব সমূহ:</h2>
+  <select id="folderSelect"></select>
+
+  <div>
+    <button class="tw" onclick="saveData()">Save</button><br />
+    <textarea id="textArea"></textarea>
+  
+  </div>
+
+
+  <script type="text/javascript" charset="utf-8">
+   // Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDMtl_OolzCM699u8GsXYByKGzCdZcZE0g",
+  authDomain: "income-details-7831b.firebaseapp.com",
+  databaseURL: "https://income-details-7831b-default-rtdb.firebaseio.com",
+  projectId: "income-details-7831b",
+  storageBucket: "income-details-7831b.appspot.com",
+  messagingSenderId: "879276775958",
+  appId: "1:879276775958:web:14546def9134efc5c4b337"
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const folderSelect = document.getElementById("folderSelect");
+const textArea = document.getElementById('textArea');
+
+let clickCount = 0;
+const clickTarget = document.getElementById('clickTarget');
+const myForm = document.getElementById('myForm');
+
+clickTarget.addEventListener('click', () => {
+  clickCount++;
+  if (clickCount === 5) {
+    myForm.style.display = 'block';
+    clickCount = 0;
+  }
+});
+
+function uploadData() {
+  const text1 = document.getElementById("text1").value;
+  const text2 = parseFloat(document.getElementById("text2").value);
+  const text3 = parseFloat(document.getElementById("text3").value);
+  const text4 = parseFloat(document.getElementById("text4").value);
+  const text5 = parseFloat(document.getElementById("text2").value) + parseFloat(document.getElementById("text3").value);
+  const text6 = (text2 * 23) + (text3 * 25); // Calculate text6 value
+
+  if (!text1 || !text4) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please fill all required fields.'
+    });
+    return;
+  }
+
+  const data = {
+    text1: text1,
+    text2: text2,
+    text3: text3,
+    text4: text4,
+    text5: text5,
+    text6: text6 // Include text6 in the data object
+  };
+
+  database.ref("data/1234").push(data)
+    .then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Data Uploaded!',
+        text: 'Data uploaded successfully!'
+      });
+      document.getElementById("uploadForm").reset();
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
+      console.error("Error uploading data:", error);
+    });
+}
+
+function displayData(folderPath = "data/1234") {
+  const dataRef = database.ref(folderPath);
+
+  dataRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    let output = "<table><thead><tr><th>তারিখ</th><th>হাপ</th><th>ফুল</th><th>আয়</th><th>খরচ</th><th>মাল</th></tr></thead><tbody>";
+
+    let totalText4 = 0;
+    let totalText2 = 0;
+    let totalText3 = 0;
+    let totalWork = 0; 
+
+    if (data) {
+      const sortedData = Object.entries(data).sort((a, b) => {
+        const dateA = new Date(a[1].text1);
+        const dateB = new Date(b[1].text1);
+        return dateA - dateB;
+      });
+
+      let firstDate, lastDate;
+      sortedData.forEach(([key, value]) => {
+        totalText4 += parseFloat(value.text4);
+        totalText2 += parseFloat(value.text2);
+        totalText3 += parseFloat(value.text3);
+        totalWork += value.text6;  // Use text6 for income
+        output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
+
+        if (!firstDate) {
+          firstDate = new Date(value.text1);
+        }
+        lastDate = new Date(value.text1);
+      });
+
+      const daysDifference = Math.round((lastDate - firstDate) / (1000 * 60 * 60 * 24)) + 1;
+      const dailyWorkAverage = totalWork / daysDifference;
+
+      output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
+      output += `<p>মোট খরচ: ${totalText4}</p>`;
+      output += `<p>মোট মাল: ${totalText2 + totalText3}</p>`;
+      output += `<p>মোট আয়: ${totalWork}</p>`; // Now uses the total of text6
+      output += `<p>মোট পাওনা: ${ ( (totalText2 * 23) + (totalText3 * 25) ) - totalText4 }</p>`;
+      output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`;
+      output += `<p>প্রতিদিনের আয়:${dailyWorkAverage.toFixed(2)}</p>`;
+
+      document.getElementById("displayArea").innerHTML = output;
+    } else {
+      document.getElementById("displayArea").innerHTML = "No data found.";
+    }
+  });
+}
+
+function populateFolderSelect() {
+  database.ref('data').on("value", (snapshot) => {
+    const folders = snapshot.val();
+    folderSelect.innerHTML = '';
+    for (const folder in folders) {
+      if (folders.hasOwnProperty(folder)) {
+        folderSelect.innerHTML += `<option value="data/${folder}">${folder}</option>`;
+      }
+    }
+  });
+}
+
+folderSelect.addEventListener("change", () => {
+  const selectedFolder = folderSelect.value;
+  displayData(selectedFolder);
+});
+
+function saveData() {
+  const text = textArea.value;
+  database.ref('textData').set(text)
+    .then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Text Saved!',
+        text: 'Your text has been saved.'
+      });
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
+      console.error("Error saving text:", error);
+    });
+}
+
+// Load text from database on page load
+database.ref('textData').on('value', (snapshot) => {
+  const text = snapshot.val();
+  if (text) {
+    textArea.value = text;
+  }
+});
+
+window.onload = () => {
+  populateFolderSelect();
+  displayData();
+};
+  </script>
+</body>
+  </html
