@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>আয়ের হিসাব সমূহ</title>
-  <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/nazrul.png?alt=media&token=f4c829f1-6e1f-4413-b8e7-3f56a8943979" title="" type="" />
+  <link rel="icon" href="" title="" type="" />
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
-      <style>
+  <style>
     body {
       font-family: serif;
       background-color: #f4f4f4;
@@ -41,7 +41,7 @@
       font-weight: bold;
     }
 
-    input[type="date"], input[type="number"], input[type="button"] {
+    input[type="date"], input[type="number"], input[type="button"], input[type="password"] {
       width: 80%;
       padding: 5px;
       margin-bottom: 15px;
@@ -121,15 +121,15 @@
   font-size: 30px;
   cursor: pointer;
 }
-img{
+ #clickTarget{
         height: 80px;
         width: 80px;
         padding: 2.5px;
         background-color: white;
         border-radius: 50%;
-        box-shadow: 1px 1px 20px ,
+        box-shadow: 1px 15px 20px ,
                    -1px -1px 20px ;
-        margin-top: 0px;
+        margin-top: 10px;
         
       }
       .pm{
@@ -143,7 +143,7 @@ img{
         box-shadow: 0px 0px 10px ,
                    -0px -0px 10px;
         font-size: 25px;
-        margin-top: -10px;
+        margin-top: -13px;
         margin-bottom: 20px;
         font-family: ;
       }
@@ -151,11 +151,11 @@ img{
        margin-bottom: 20px;
        padding: 5px;
        height: 40px;
-       width: 59%;
+       width: 69%;
        background-color: ;
        font-family: serif;
        border: 0.5px solid ;
-       font-size: 30px;
+       font-size: 20px;
        border-radius: 5px;
       }
       textarea{
@@ -173,7 +173,19 @@ img{
       .tw{
        margin-bottom: 10px;
       }
+      footer {
+        background-color: #337;
+        color: #fff;
+        padding: 10px;
+        text-align: ;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        text-align: ;
+      }
   </style>
+
 </head>
 <body>
   <img id="clickTarget" src="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/nazrul.png?alt=media&token=f4c829f1-6e1f-4413-b8e7-3f56a8943979" alt="" />
@@ -181,215 +193,242 @@ img{
     MD NAZRUL ISLAM
   </div>
 
-  <div id="myForm" class="">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
-    <form id="uploadForm">
-      <label for="text1">Date:</label>
-      <input type="date" id="text1" name="text1" required="required">
-
-      <label for="text2">Half:</label>
-      <input type="number" id="text2" name="text2">
-
-      <label for="text3">Full:</label>
-      <input type="number" id="text3" name="text3">
-
-      <label for="text4">Paid:</label>
-      <input type="number" id="text4" name="text4" required="required">
-
-      <input type="hidden" id="text5" name="text5"> 
-      <input type="hidden" id="text6" name="text6">  
-
-      <input type="button" value="Upload" onclick="uploadData()">
-    </form>
+  <!-- Password Input -->
+  <div id="passwordForm" style="margin-top: 20px;">
+    <label for="password">Enter Password:</label>
+    <input type="password" id="password" name="password" required>
+    <input type="button" value="Verify it's you" onclick="checkPassword()">
   </div>
 
-  <div id="displayArea"></div>
-  <h2>পূর্ববর্তী হিসাব সমূহ:</h2>
-  <select id="folderSelect"></select>
+  <!-- Your Existing Content -->
+  <div id="content" style="display: none;"> <!-- Initially hidden -->
+    <div id="myForm" class="">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+      <form id="uploadForm">
+        <label for="text1">Date:</label>
+        <input type="date" id="text1" name="text1" required="required">
 
-  <div>
-    <button class="tw" onclick="saveData()">Save</button><br />
-    <textarea id="textArea"></textarea>
+        <label for="text2">Half:</label>
+        <input type="number" id="text2" name="text2">
+
+        <label for="text3">Full:</label>
+        <input type="number" id="text3" name="text3">
+
+        <label for="text4">Paid:</label>
+        <input type="number" id="text4" name="text4" required="required">
+
+        <input type="hidden" id="text5" name="text5"> 
+        <input type="hidden" id="text6" name="text6">  
+
+        <input type="button" value="Upload" onclick="uploadData()">
+      </form>
+    </div>
+
+    <select id="folderSelect"></select>
+    <div id="displayArea"></div>
+
+    <div>
+      <button class="tw" onclick="saveData()">Save</button><br />
+      <textarea id="textArea"></textarea>
+    
+    </div>
+
+    <footer>
+      © 2024 created by . MD NAZRUL ISLAM.
+    </footer>
+  </div>
+
   
-  </div>
-
-
-  <script type="text/javascript" charset="utf-8">
-   // Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDMtl_OolzCM699u8GsXYByKGzCdZcZE0g",
-  authDomain: "income-details-7831b.firebaseapp.com",
-  databaseURL: "https://income-details-7831b-default-rtdb.firebaseio.com",
-  projectId: "income-details-7831b",
-  storageBucket: "income-details-7831b.appspot.com",
-  messagingSenderId: "879276775958",
-  appId: "1:879276775958:web:14546def9134efc5c4b337"
-};
-
-const app = firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-const folderSelect = document.getElementById("folderSelect");
-const textArea = document.getElementById('textArea');
-
-let clickCount = 0;
-const clickTarget = document.getElementById('clickTarget');
-const myForm = document.getElementById('myForm');
-
-clickTarget.addEventListener('click', () => {
-  clickCount++;
-  if (clickCount === 5) {
-    myForm.style.display = 'block';
-    clickCount = 0;
-  }
-});
-
-function uploadData() {
-  const text1 = document.getElementById("text1").value;
-  const text2 = parseFloat(document.getElementById("text2").value);
-  const text3 = parseFloat(document.getElementById("text3").value);
-  const text4 = parseFloat(document.getElementById("text4").value);
-  const text5 = parseFloat(document.getElementById("text2").value) + parseFloat(document.getElementById("text3").value);
-  const text6 = (text2 * 23) + (text3 * 25); // Calculate text6 value
-
-  if (!text1 || !text4) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Please fill all required fields.'
-    });
-    return;
-  }
-
-  const data = {
-    text1: text1,
-    text2: text2,
-    text3: text3,
-    text4: text4,
-    text5: text5,
-    text6: text6 // Include text6 in the data object
+<script>
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMtl_OolzCM699u8GsXYByKGzCdZcZE0g",
+    authDomain: "income-details-7831b.firebaseapp.com",
+    databaseURL: "https://income-details-7831b-default-rtdb.firebaseio.com",
+    projectId: "income-details-7831b",
+    storageBucket: "income-details-7831b.appspot.com",
+    messagingSenderId: "879276775958",
+    appId: "1:879276775958:web:14546def9134efc5c4b337"
   };
 
-  database.ref("data/1234").push(data)
-    .then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Data Uploaded!',
-        text: 'Data uploaded successfully!'
-      });
-      document.getElementById("uploadForm").reset();
-    })
-    .catch((error) => {
+  const app = firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  const folderSelect = document.getElementById("folderSelect");
+  const textArea = document.getElementById('textArea');
+
+  let clickCount = 0;
+  const clickTarget = document.getElementById('clickTarget');
+  const myForm = document.getElementById('myForm');
+
+  clickTarget.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount === 3) {
+      myForm.style.display = 'block';
+      clickCount = 0;
+    }
+  });
+
+  function uploadData() {
+    const text1 = document.getElementById("text1").value;
+    const text2 = parseFloat(document.getElementById("text2").value);
+    const text3 = parseFloat(document.getElementById("text3").value);
+    const text4 = parseFloat(document.getElementById("text4").value);
+    const text5 = parseFloat(document.getElementById("text2").value) + parseFloat(document.getElementById("text3").value);
+    const text6 = (text2 * 23) + (text3 * 25); // Calculate text6 value
+
+    if (!text1 || !text4) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href="#">Why do I have this issue?</a>'
+        text: 'Please fill all required fields.'
       });
-      console.error("Error uploading data:", error);
-    });
-}
-
-function displayData(folderPath = "data/1234") {
-  const dataRef = database.ref(folderPath);
-
-  dataRef.on("value", (snapshot) => {
-    const data = snapshot.val();
-    let output = "<table><thead><tr><th>তারিখ</th><th>হাপ</th><th>ফুল</th><th>আয়</th><th>খরচ</th><th>মাল</th></tr></thead><tbody>";
-
-    let totalText4 = 0;
-    let totalText2 = 0;
-    let totalText3 = 0;
-    let totalWork = 0; 
-
-    if (data) {
-      const sortedData = Object.entries(data).sort((a, b) => {
-        const dateA = new Date(a[1].text1);
-        const dateB = new Date(b[1].text1);
-        return dateA - dateB;
-      });
-
-      let firstDate, lastDate;
-      sortedData.forEach(([key, value]) => {
-        totalText4 += parseFloat(value.text4);
-        totalText2 += parseFloat(value.text2);
-        totalText3 += parseFloat(value.text3);
-        totalWork += value.text6;  // Use text6 for income
-        output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
-
-        if (!firstDate) {
-          firstDate = new Date(value.text1);
-        }
-        lastDate = new Date(value.text1);
-      });
-
-      const daysDifference = Math.round((lastDate - firstDate) / (1000 * 60 * 60 * 24)) + 1;
-      const dailyWorkAverage = totalWork / daysDifference;
-
-      output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
-      output += `<p>মোট খরচ: ${totalText4}</p>`;
-      output += `<p>মোট মাল: ${totalText2 + totalText3}</p>`;
-      output += `<p>মোট আয়: ${totalWork}</p>`; // Now uses the total of text6
-      output += `<p>মোট পাওনা: ${ ( (totalText2 * 23) + (totalText3 * 25) ) - totalText4 }</p>`;
-      output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`;
-      output += `<p>প্রতিদিনের আয়:${dailyWorkAverage.toFixed(2)}</p>`;
-
-      document.getElementById("displayArea").innerHTML = output;
-    } else {
-      document.getElementById("displayArea").innerHTML = "No data found.";
+      return;
     }
-  });
-}
 
-function populateFolderSelect() {
-  database.ref('data').on("value", (snapshot) => {
-    const folders = snapshot.val();
-    folderSelect.innerHTML = '';
-    for (const folder in folders) {
-      if (folders.hasOwnProperty(folder)) {
-        folderSelect.innerHTML += `<option value="data/${folder}">${folder}</option>`;
-      }
-    }
-  });
-}
+    const data = {
+      text1: text1,
+      text2: text2,
+      text3: text3,
+      text4: text4,
+      text5: text5,
+      text6: text6 // Include text6 in the data object
+    };
 
-folderSelect.addEventListener("change", () => {
-  const selectedFolder = folderSelect.value;
-  displayData(selectedFolder);
-});
-
-function saveData() {
-  const text = textArea.value;
-  database.ref('textData').set(text)
-    .then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Text Saved!',
-        text: 'Your text has been saved.'
+    database.ref("Nazrul/Ramadan's 2021").push(data)
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Data Uploaded!',
+          text: 'Data uploaded successfully!'
+        });
+        document.getElementById("uploadForm").reset();
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
+        console.error("Error uploading data:", error);
       });
-    })
-    .catch((error) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href="#">Why do I have this issue?</a>'
-      });
-      console.error("Error saving text:", error);
-    });
-}
-
-// Load text from database on page load
-database.ref('textData').on('value', (snapshot) => {
-  const text = snapshot.val();
-  if (text) {
-    textArea.value = text;
   }
-});
 
-window.onload = () => {
-  populateFolderSelect();
-  displayData();
-};
-  </script>
+  function displayData(folderPath = "Nazrul/Ramadan's 2000") {
+    const dataRef = database.ref(folderPath);
+
+    dataRef.on("value", (snapshot) => {
+      const data = snapshot.val();
+      let output = "<table><thead><tr><th>তারিখ</th><th>হাপ</th><th>ফুল</th><th>আয়</th><th>খরচ</th><th>মাল</th></tr></thead><tbody>";
+
+      let totalText4 = 0;
+      let totalText2 = 0;
+      let totalText3 = 0;
+      let totalWork = 0; 
+
+      if (data) {
+        // No need to sort, just iterate in the order data appears in the database
+        for (const key in data) {
+          const value = data[key];
+          totalText4 += parseFloat(value.text4);
+          totalText2 += parseFloat(value.text2);
+          totalText3 += parseFloat(value.text3);
+          totalWork += value.text6;  // Use text6 for income
+          output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
+        }
+
+        output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
+        output += `<p>মোট খরচ: ${totalText4}</p>`;
+        output += `<p>মোট মাল: ${totalText2 + totalText3}</p>`;
+        output += `<p>মোট হাফ: ${totalText2}</p>`;
+        output += `<p>মোট ফুল: ${totalText3}</p>`;
+        output += `<p>মোট আয়: ${totalWork}</p>`; // Now uses the total of text6
+        output += `<p>মোট পাওনা: ${totalWork - totalText4}</p>`;
+        // You can calculate total weeks if needed
+         output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; 
+
+        document.getElementById("displayArea").innerHTML = output;
+      } else {
+        document.getElementById("displayArea").innerHTML = "No data found.";
+      }
+    });
+  }
+
+  function populateFolderSelect() {
+    database.ref('Nazrul').on("value", (snapshot) => {
+      const folders = snapshot.val();
+      folderSelect.innerHTML = ''; // Clear existing options
+
+      // Create options for each folder in reverse order
+      const folderKeys = Object.keys(folders).reverse();
+      for (const folder of folderKeys) {
+        // Construct the full path to the folder
+        const fullFolderPath = `Nazrul/${folder}`; 
+        folderSelect.innerHTML += `<option value="${fullFolderPath}">${folder}</option>`; 
+      }
+
+      // Select the default folder (the latest one, based on options order)
+      folderSelect.selectedIndex = 0; 
+    });
+  }
+
+  folderSelect.addEventListener("change", () => {
+    const selectedFolder = folderSelect.value;
+    displayData(selectedFolder);
+  });
+
+  function saveData() {
+    const text = textArea.value;
+    database.ref('textData').set(text)
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Text Saved!',
+          text: 'Your text has been saved.'
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
+        console.error("Error saving text:", error);
+      });
+  }
+
+  // Load text from database on page load
+  database.ref('textData').on('value', (snapshot) => {
+    const text = snapshot.val();
+    if (text) {
+      textArea.value = text;
+    }
+  });
+
+  // Password Verification Logic
+  function checkPassword() {
+    const password = document.getElementById("password").value;
+    const correctPassword = "Nazrul@2000"; // Replace with your actual password
+
+    if (password === correctPassword) {
+      document.getElementById("passwordForm").style.display = "none";
+      document.getElementById("content").style.display = "block";
+      populateFolderSelect();
+      displayData();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Incorrect Password',
+        text: 'Please enter the correct password.'
+      });
+    }
+  }
+
+  window.onload = () => {
+    // PopulateFolderSelect();
+    // displayData();
+  };
+</script>
 </body>
   </html
