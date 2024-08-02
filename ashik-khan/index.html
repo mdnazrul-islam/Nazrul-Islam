@@ -206,7 +206,7 @@ img{
     <input type="number" id="text3" name="text3">
 
     <label for="text4">খরচ:</label>
-    <input type="number" id="text4" name="text4" required="required">
+    <input type="number" id="text4" name="text4">
 
     <input type="hidden" id="text5" name="text5"> 
     <input type="hidden" id="text6" name="text6"> 
@@ -267,7 +267,7 @@ img{
       document.getElementById("text6").value = text6;
 
       // Validate required fields
-      if (!text1 || !text4) {
+      if (!text1) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
