@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>আয়ের হিসাব সমূহ</title>
-  <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/nazrul.png?alt=media&token=f4c829f1-6e1f-4413-b8e7-3f56a8943979" title="" type="" />
+  <title>MD NAZRUL ISLAM</title>
+  <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/20240128_145351~2.jpg?alt=media&token=b2489529-c299-4c9a-a2a2-69b93c993fbb" title="" type="" />
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
@@ -189,7 +189,7 @@
 
 </head>
 <body>
-  <img id="clickTarget" src="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/nazrul.png?alt=media&token=f4c829f1-6e1f-4413-b8e7-3f56a8943979" alt="" />
+  <img id="clickTarget" src="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/20240128_145351~2.jpg?alt=media&token=b2489529-c299-4c9a-a2a2-69b93c993fbb" alt="" />
   <div class="pm">
     MD NAZRUL ISLAM
   </div>
@@ -295,7 +295,7 @@
       text6: text6 // Include text6 in the data object
     };
 
-    database.ref("Nazrul/Ramadan's 2021").push(data)
+    database.ref("Nazrul/Ramadan's 2024-25").push(data)
       .then(() => {
         Swal.fire({
           icon: 'success',
@@ -315,7 +315,7 @@
       });
   }
 
-  function displayData(folderPath = "Nazrul/Ramadan's 2000") {
+  function displayData(folderPath = "Nazrul/Ramadan's 2024-25") {
     const dataRef = database.ref(folderPath);
 
     dataRef.on("value", (snapshot) => {
