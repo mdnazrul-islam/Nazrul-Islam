@@ -306,43 +306,43 @@ img{
         });
     }
 
-    function displayData() {
-      const dataRef = database.ref("Ashik");
+// ... (Your existing Firebase configuration and uploadData function) ...
 
-      dataRef.on("value", (snapshot) => {
-        const data = snapshot.val();
-        let output = "<table><thead><tr><th>তারিখ</th><th>সিঙ্গেল</th><th>ডাবল</th><th>আয়</th><th>খরচ</th><th>মাল</th></tr></thead><tbody>";
+function displayData() {
+  const dataRef = database.ref("Ashik");
 
-        let totalText4 = 0;
-        let totalText6 = 0; 
-        let totalWork = 0; // Initialize total work variable
+  dataRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    let output = "<table><thead><tr><th>তারিখ</th><th>সিঙ্গেল</th><th>ডাবল</th><th>আয়</th><th>খরচ</th><th>মাল</th></tr></thead><tbody>";
 
-        if (data) {
-          Object.entries(data).forEach(([key, value]) => {
-            totalText4 += parseFloat(value.text4);
-            totalText6 += parseFloat(value.text6); // Update total text6 
-            //totalWork += (value.text2 * 23) + (value.text3 * 25);  // Calculate total work
-            output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
-          });
+    let totalText4 = 0;
+    let totalText6 = 0;
+    let totalMal = 0; // Initialize totalMal variable
 
-          output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
-          output += `<p>মোট খরচ: ${totalText4}</p>`;
-          output += `<p>মোট মাল: ${totalText6}</p>`; // Show total text6 instead of text2 + text3
-          output += `<p>মোট আয়: ${totalText6}</p>`; // Update total work to use total text6
-          output += `<p>মোট পাওনা: ${ totalText6 - totalText4 }</p>`; // Update total payable calculation
-
-          // Add the new line for the number of data uploads
-          output += `<p>মোট দিন: ${Object.keys(data).length}</p>`; // Get the length of the data object
-
-          // Remove daily work average calculation
-
-          document.getElementById("displayArea").innerHTML = output;
-        } else {
-          document.getElementById("displayArea").innerHTML = "No data found.";
-        }
+    if (data) {
+      Object.entries(data).forEach(([key, value]) => {
+        totalText4 += parseFloat(value.text4);
+        totalText6 += parseFloat(value.text6);
+        totalMal += parseFloat(value.text2) + parseFloat(value.text3);  // Calculate totalMal
+        output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
       });
-    }
 
+      output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
+      output += `<p>মোট খরচ: ${totalText4}</p>`;
+      output += `<p>মোট মাল: ${totalMal}</p>`; // Display totalMal 
+      output += `<p>মোট আয়: ${totalText6}</p>`;
+      output += `<p>মোট পাওনা: ${ totalText6 - totalText4 }</p>`;
+      output += `<p>মোট দিন: ${Object.keys(data).length}</p>`; // Count the number of data entries
+
+      document.getElementById("displayArea").innerHTML = output;
+    } else {
+      document.getElementById("displayArea").innerHTML = "No data found.";
+    }
+  });
+}
+
+// ... (Your existing checkPassword and onload functions) ...
+    
     function checkPassword() {
       const password = document.getElementById("password").value;
       if (password === "Ashik000") { // Replace "your_password" with the actual password
