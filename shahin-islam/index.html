@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shahin Islam</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/1723314004088~2.jpg?alt=media&token=8f6c0518-f20f-4070-9a91-2738f59df98c" title="" type="" />
+  <style>
+    body {
+      font-family: serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      zoom: ;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+    p{
+     margin: 20px;
+     border: 0.5px dotted gray;
+     padding: 6px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: %;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="date"], input[type="number"], input[type="button"],input[type="password"] {
+      width: 80%;
+      padding: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input[type="button"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button{
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer
+      width: 80px;
+      padding: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 70%;
+      margin: 10px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: ;
+      box-shadow: 0px 0px 5px ,
+                   -0px -0px 5px;
+      border: none;
+      padding: 5px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 6px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #88ffaa;
+    }
+    h2{
+     text-align: center;
+    }
+
+    #displayArea {
+      margin-top: 30px;
+      text-align: left;
+      font-size: 18px;
+      color: #333;
+    }
+
+    #displayArea > p { /* Style for the summary data */
+      font-size: 20px;
+      margin-top: px;
+      font-weight: 500;
+    }
+    
+      #myForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+  }
+  /* Close button */
+.closebtn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: red;
+  font-size: 30px;
+  cursor: pointer;
+}
+img{
+        height: 80px;
+        width: 80px;
+        padding: 2.5px;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 1px 1px 20px ,
+                   -1px -1px 20px ;
+        margin-top: 0px;
+        
+      }
+      .pm{
+        padding-bottom: 14px;
+        padding-top: 14px;
+        height: 88%;
+        width: 92%;
+        background-color: none;
+        margin-left: 4%;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px ,
+                   -0px -0px 10px;
+        font-size: 25px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        font-family: ;
+      }
+      footer {
+        background-color: #337;
+        color: #fff;
+        padding: 10px;
+        text-align: ;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        text-align: ;
+      }
+      .fot{
+       text-decoration: none;
+       color: white;
+       font-size: 18px;
+       padding: 5px;
+       margin-left: 5px;
+      }
+     
+  </style>
+</head>
+<body>
+   <img id="clickTarget" src="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/1723314004088~2.jpg?alt=media&token=8f6c0518-f20f-4070-9a91-2738f59df98c" alt="" />
+  <div class="pm">
+    Md Shahin Islam
+  </div><br /><br />
+  <div id="passwordForm" style="text-align:center;">
+    <label for="password">Enter Password:</label>
+    <input type="password" id="password" name="password"><br />
+    <button onclick="checkPassword()">Submit</button>
+  </div>
+  <div id="content" style="display: none;">
+ 
+  
+  <div id="myForm" class="">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+  <form id="uploadForm">
+    <label for="text1">তারিখ:</label>
+    <input type="date" id="text1" name="text1" required="required">
+
+    <label for="text2">হাপ:</label>
+    <input type="number" id="text2" name="text2">
+
+    <label for="text3">ফুল:</label>
+    <input type="number" id="text3" name="text3">
+
+    <label for="text4">খরচ:</label>
+    <input type="number" id="text4" name="text4" required="">
+
+    <input type="hidden" id="text5" name="text5"> 
+    <input type="hidden" id="text6" name="text6"> 
+
+    <input type="button" value="Upload" onclick="uploadData()">
+  </form>
+ </div>
+
+  <div id="displayArea"></div><br /><br />
+
+<footer>
+    <a class="fot" href="https://www.facebook.com/4nazrul.islam">© 2024 created by 
+    . MD NAZRUL ISLAM.</a>
+</footer>
+  
+  </div>
+ <script>
+  let clickCount = 0;
+
+  const clickTarget = document.getElementById('clickTarget');
+  const myForm = document.getElementById('myForm');
+
+  clickTarget.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount === 2) {
+      myForm.style.display = 'block';
+      clickCount = 0; // Reset the click count
+    }
+  });
+</script>
+
+  <script>
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMtl_OolzCM699u8GsXYByKGzCdZcZE0g",
+      authDomain: "income-details-7831b.firebaseapp.com",
+      databaseURL: "https://income-details-7831b-default-rtdb.firebaseio.com",
+      projectId: "income-details-7831b",
+      storageBucket: "income-details-7831b.appspot.com",
+      messagingSenderId: "879276775958",
+      appId: "1:879276775958:web:14546def9134efc5c4b337"
+    };
+
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    function uploadData() {
+      const text1 = document.getElementById("text1").value;
+      const text2 = parseFloat(document.getElementById("text2").value);
+      const text3 = parseFloat(document.getElementById("text3").value);
+      const text4 = parseFloat(document.getElementById("text4").value);
+      // Calculate text5 and text6 values
+      const text5 = text2 + text3;
+      const text6 = (text2 * 6) + (text3 * 7);
+      // Set hidden input values
+      document.getElementById("text5").value = text5;
+      document.getElementById("text6").value = text6;
+
+      // Validate required fields
+      if (!text1) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please fill all required fields.'
+        });
+        return;
+      }
+
+      const data = {
+        text1: text1,
+        text2: text2,
+        text3: text3,
+        text4: text4,
+        text5: text5,
+        text6: text6
+      };
+
+      // Push data to Firebase Realtime Database
+      database.ref("Shahin").push(data)
+        .then(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Data Uploaded!',
+            text: 'Data uploaded successfully!'
+          });
+          document.getElementById("uploadForm").reset();
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+          console.error("Error uploading data:", error); 
+        });
+    }
+
+   
+
+// ... (Your existing Firebase configuration and uploadData function) ...
+
+function displayData() {
+  const dataRef = database.ref("Shahin");
+
+  dataRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    let output = "<table><thead><tr><th>তারিখ</th><th>হাপ</th><th>ফুল</th><th>আয়</th><th>খরচ</th><th>মাল</th></tr></thead><tbody>";
+
+    let totalText4 = 0;
+    let totalText6 = 0;
+    let totalMal = 0; // Initialize totalMal variable
+
+    if (data) {
+      Object.entries(data).forEach(([key, value]) => {
+        totalText4 += parseFloat(value.text4);
+        totalText6 += parseFloat(value.text6);
+        totalMal += parseFloat(value.text2) + parseFloat(value.text3);  // Calculate totalMal
+        output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
+      });
+
+      output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
+      output += `<p>মোট খরচ: ${totalText4}</p>`;
+      output += `<p>মোট মাল: ${totalMal}</p>`; // Display totalMal 
+      output += `<p>মোট আয়: ${totalText6}</p>`;
+      output += `<p>মোট পাওনা: ${ totalText6 - totalText4 }</p>`;
+      output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; // Count the number of data entries
+
+      document.getElementById("displayArea").innerHTML = output;
+    } else {
+      document.getElementById("displayArea").innerHTML = "No data found.";
+    }
+  });
+}
+
+// ... (Your existing checkPassword and onload functions) ...
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      if (password === "Shahin321") { // Replace "your_password" with the actual password
+        document.getElementById("passwordForm").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        displayData();
+      } else {
+        // Use SweetAlert2 for a better user experience
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Incorrect Password!'
+        });
+      }
+    }
+
+    window.onload = function() {
+      //displayData();
+    }
+  </script>
+</body>
+     </html
