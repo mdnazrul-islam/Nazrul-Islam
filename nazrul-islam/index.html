@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>MD NAZRUL ISLAM</title>
+  
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/20240128_145351~2.jpg?alt=media&token=b2489529-c299-4c9a-a2a2-69b93c993fbb" title="" type="" />
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -185,6 +187,31 @@
         width: 100%;
         text-align: ;
       }
+
+      .hidden-value {
+        color: #ccc; /* Make the text light gray */
+        font-size: 0px; /* Make the text smaller */
+        font-weight: normal;
+        text-align: right; /* Align text to the right */
+      }
+            .show-values {
+        font-size: 20px; /* Match the font size of other text */
+        font-weight: bold;
+        text-align: left; /* Align text to the left */
+        color: black; /* Change the text color to black */
+      }
+      #showButton {
+        background-color: #4CAF50;
+        color: white;
+        padding: 7px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 25px;
+        position: relative;
+        left: 80%;
+        right: 10%;
+      }
   </style>
 
 </head>
@@ -338,15 +365,20 @@
           output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
         }
 
+        
+        
         output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
-        output += `<p>মোট খরচ: ${totalText4}</p>`;
-        output += `<p>মোট মাল: ${totalText2 + totalText3}</p>`;
-        output += `<p>মোট হাফ: ${totalText2}</p>`;
-        output += `<p>মোট ফুল: ${totalText3}</p>`;
-        output += `<p>মোট আয়: ${totalWork}</p>`; // Now uses the total of text6
-        output += `<p>মোট পাওনা: ${totalWork - totalText4}</p>`;
+        
+        output += `<p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>`;
+        output += `<p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>`;
+        output += `<p>মোট হাফ: <span class="hidden-value">${totalText2}</span><span class="show-values">...</span></p>`;
+        output += `<p>মোট ফুল: <span class="hidden-value">${totalText3}</span><span class="show-values">...</span></p>`;
+        output += `<p>মোট আয়: <span class="hidden-value">${totalWork}</span><span class="show-values">...</span></p>`; // Now uses the total of text6
+        output += `<p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>`;
         // You can calculate total weeks if needed
          output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; 
+         
+        output += `<button id="showButton" onclick="showValues()"><i class="fa fa-eye"></button>`;
 
         document.getElementById("displayArea").innerHTML = output;
       } else {
@@ -410,7 +442,7 @@
   // Password Verification Logic
   function checkPassword() {
     const password = document.getElementById("password").value;
-    const correctPassword = "Nazrul@2000"; // Replace with your actual password
+    const correctPassword = "Nazrul"; // Replace with your actual password
 
     if (password === correctPassword) {
       document.getElementById("passwordForm").style.display = "none";
@@ -425,6 +457,25 @@
       });
     }
   }
+function showValues() {
+    const hiddenValues = document.querySelectorAll('.hidden-value');
+    const showValues = document.querySelectorAll('.show-values');
+
+    hiddenValues.forEach(hiddenValue => {
+      hiddenValue.classList.add('show-values');
+      hiddenValue.classList.remove('hidden-value');
+    });
+
+    showValues.forEach(showValue => {
+      showValue.classList.remove('show-values');
+      showValue.classList.add('hidden-value');
+    });
+
+    // Remove the Show Values button
+    const showButton = document.getElementById('showButton');
+    
+  }
+
 
   window.onload = () => {
     // PopulateFolderSelect();
