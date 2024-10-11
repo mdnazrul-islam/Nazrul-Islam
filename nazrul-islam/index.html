@@ -9,14 +9,14 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
-  <style>
+ <style>
     body {
       font-family: serif;
       background-color: #edffed;
       margin: 0;
       padding: 0;
       text-align: center;
-      zoom: 2.7;
+      zoom: 2.7; 
     }
 
     h2 {
@@ -27,7 +27,8 @@
      margin: 20px;
      border: 0.5px dotted gray;
      padding: 6px;
-     zoom: ;
+     zoom: 1;
+     color: ;
     }
 
     form {
@@ -173,7 +174,7 @@
        border:  1px dotted ;
        font-size: 15px;
        font-family: Serif;
-       
+       zoom: 1;
       }
       
       .tw{
@@ -245,6 +246,8 @@
      
     }
   </style>
+
+
 
 </head>
 <body>
@@ -335,6 +338,7 @@
   </div>
 
   
+
 <script>
   // Your Firebase configuration
   const firebaseConfig = {
@@ -435,16 +439,17 @@
 
         
         
-        output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
+        output += "</tbody></table><br><hr>";
         
-        output += `<p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>`;
-        output += `<p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>`;
-        output += `<p>মোট হাফ: <span class="hidden-value">${totalText2}</span><span class="show-values">...</span></p>`;
-        output += `<p>মোট ফুল: <span class="hidden-value">${totalText3}</span><span class="show-values">...</span></p>`;
-        output += `<p>মোট আয়: <span class="hidden-value">${totalWork}</span><span class="show-values">...</span></p>`; // Now uses the total of text6
-        output += `<p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>`;
-        output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; 
-        output += `<button class="showButton" id="showButton" onclick="showValues()"><i class="fa fa-eye"></button>`; 
+        output += `<div style="zoom: 1">
+        <h2>মোট হিসাব সমূহ:</h2><p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>
+        <p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>
+        <p>মোট হাফ: <span class="hidden-value">${totalText2}</span><span class="show-values">...</span></p>
+        <p>মোট ফুল: <span class="hidden-value">${totalText3}</span><span class="show-values">...</span></p>
+        <p>মোট আয়: <span class="hidden-value">${totalWork}</span><span class="show-values">...</span></p>
+        <p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>
+        <p>মোট সপ্তাহ: ${Object.keys(data).length}</p>
+        <button class="showButton" id="showButton" onclick="showValues()"><i class="fa fa-eye"></button></div>`; 
         
         document.getElementById("displayArea").innerHTML = output;
       } else {
@@ -615,4 +620,4 @@ function showValues() {
     window.onload = initCalculator; 
 </script>
 </body>
-  </html
+  </htm
