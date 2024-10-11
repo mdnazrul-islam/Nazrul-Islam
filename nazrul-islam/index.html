@@ -273,6 +273,10 @@
 
     <div id="displayArea"></div>
 
+     <div class="week">Start ( 08-07-2024) থেকে Eid ( 02-05-2025) পর্যন্ত মোট<strong id="result1"></strong> সপ্তাহ, তন্মধ্যে অতিবাহিত হয়েছে <strong id="result2"></strong> সপ্তাহ , আর Eid পর্যন্ত বাকি আছে  <strong id="result3"></strong> সপ্তাহ।</div>
+     <button id="showButton" onclick="showValues()"><i class="fa fa-eye"></button>
+   
+
 
     <textarea id="textArea"></textarea>
     <div style="text-align: right;" >
@@ -430,11 +434,7 @@
         output += `<p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>`;
         output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; 
         
-        output += `<div class="week">Start ( 08-07-2024) থেকে Eid ( 02-05-2025) পর্যন্ত মোট<strong id="result1"></strong> সপ্তাহ, তন্মধ্যে অতিবাহিত হয়েছে <strong id="result2"></strong> সপ্তাহ , আর Eid পর্যন্ত বাকি আছে  <strong id="result3"></strong> সপ্তাহ।</div>`; 
-
-
-        output += `<button id="showButton" onclick="showValues()"><i class="fa fa-eye"></button>`;
-
+        
         document.getElementById("displayArea").innerHTML = output;
       } else {
         document.getElementById("displayArea").innerHTML = "No data found.";
