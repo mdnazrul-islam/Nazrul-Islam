@@ -27,7 +27,7 @@
      margin: 20px;
      border: 0.5px dotted gray;
      padding: 6px;
-     zoom: 0.6;
+     zoom: 0.5;
     }
 
     form {
@@ -163,7 +163,7 @@
        border-radius: 5px;
       }
       textarea{
-       margin-bottom: px;
+       
        padding: 22px;
        height: 400px;
        width: 85%;
@@ -176,8 +176,10 @@
       }
       
       .tw{
-       margin: 10px;
-       margin-left: 22px;
+       margin-top: 10px;
+       margin-bottom: 72px;
+
+       margin-left: 25px;
         
       
       }
@@ -267,15 +269,15 @@
 
     <select id="folderSelect"></select>
         
-<div class="week">Start ( 08-07-2024) থেকে Eid ( 02-05-2025) পর্যন্ত মোট<strong id="result1"></strong> সপ্তাহ, তন্মধ্যে অতিবাহিত হয়েছে <strong id="result2"></strong> সপ্তাহ , আর Eid পর্যন্ত বাকি আছে  <strong id="result3"></strong> সপ্তাহ।</div>
+
     <div id="displayArea"></div>
 
 
-    
+    <textarea id="textArea"></textarea>
     <div style="text-align: right;" >
       <button class="tw" onclick="saveData()">Save</button><br />
     </div>
-    <textarea id="textArea"></textarea>
+    
     
 <div style="display: none;">
     <h1>Week Calculator</h1>
@@ -417,7 +419,7 @@
 
         
         
-        output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
+        output += "</tbody></table><br><hr><h3>মোট হিসাব সমূহ:</h3>";
         
         output += `<p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>`;
         output += `<p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>`;
@@ -427,6 +429,9 @@
         output += `<p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>`;
         output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; 
         
+        output += `<div class="week">Start ( 08-07-2024) থেকে Eid ( 02-05-2025) পর্যন্ত মোট<strong id="result1"></strong> সপ্তাহ, তন্মধ্যে অতিবাহিত হয়েছে <strong id="result2"></strong> সপ্তাহ , আর Eid পর্যন্ত বাকি আছে  <strong id="result3"></strong> সপ্তাহ।</div>`; 
+
+
         output += `<button id="showButton" onclick="showValues()"><i class="fa fa-eye"></button>`;
 
         document.getElementById("displayArea").innerHTML = output;
