@@ -27,7 +27,7 @@
      margin: 20px;
      border: 0.5px dotted gray;
      padding: 6px;
-     zoom: 0.4;
+     zoom: ;
     }
 
     form {
@@ -177,7 +177,7 @@
       
       .tw{
        margin-bottom: 10px;
-      text-align: right;
+      
       }
       footer {
         background-color: #337;
@@ -264,15 +264,16 @@
     </div>
 
     <select id="folderSelect"></select>
+        
+<div class="week">Start ( 08-07-2024) থেকে Eid ( 02-05-2025) পর্যন্ত মোট<strong id="result1"></strong> সপ্তাহ, তন্মধ্যে অতিবাহিত হয়েছে <strong id="result2"></strong> সপ্তাহ , আর Eid পর্যন্ত বাকি আছে  <strong id="result3"></strong> সপ্তাহ।</div>
     <div id="displayArea"></div>
 
 
     
-    <div >
+    <div style="text-align: right;" >
       <button class="tw" onclick="saveData()">Save</button><br />
-      <textarea id="textArea"></textarea>
-    
     </div>
+    <textarea id="textArea"></textarea>
     
 <div style="display: none;">
     <h1>Week Calculator</h1>
@@ -423,8 +424,6 @@
         output += `<p>মোট আয়: <span class="hidden-value">${totalWork}</span><span class="show-values">...</span></p>`; // Now uses the total of text6
         output += `<p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>`;
         output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; 
-
-        output += `<p class="week"> Start ( 08-07-2024) থেকে Eid ( 02-05-2025) পর্যন্ত মোট<strong id="result1"></strong> সপ্তাহ, তন্মধ্যে অতিবাহিত হয়েছে <strong id="result2"></strong> সপ্তাহ , আর Eid পর্যন্ত বাকি আছে  <strong id="result3"></strong> সপ্তাহ।</p>`;
         
         output += `<button id="showButton" onclick="showValues()"><i class="fa fa-eye"></button>`;
 
