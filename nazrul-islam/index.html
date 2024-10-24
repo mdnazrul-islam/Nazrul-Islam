@@ -16,7 +16,7 @@
       margin: 0;
       padding: 0;
       text-align: center;
-      zoom: 2.7; 
+      zoom: ; 
       background: linear-gradient(to bottom right, #c8ffd5, #ffcfcf);
 
     }
@@ -31,7 +31,7 @@
      margin: 20px;
      border: 0.5px dotted gray;
      padding: 6px;
-     zoom: ;
+     zoom: 1.2;
      color: ;
     }
 
@@ -204,7 +204,22 @@
         text-align: ;
       }
 
-      
+      .hidden-value {
+        margin-left: 10px;
+        zoom: 1.4;
+        color: black; /* Make the text light gray */
+        font-size: 0px; /* Make the text smaller */
+        font-weight: normal;
+        text-align: right; /* Align text to the right */
+      }
+            .show-values {
+        margin-left: 10px;
+        zoom: 1.4;
+        font-size: 14px; /* Match the font size of other text */
+        font-weight: bold;
+        text-align: left; /* Align text to the left */
+        color: black; /* Change the text color to black */
+      }
       .showButton {
         background-color: #4CAF50;
         color: white;
@@ -241,12 +256,6 @@
       margin-top: -30px;
      
     }
-         .dot{
-        display: block;
-      }
-      .number{
-        display: none;
-          }
   </style>
 
 
@@ -305,7 +314,7 @@
 
     <div class="input-group">
         <label for="startDate1">Start:</label>
-        <input type="date" id="startDate1" value="2024-07-04">
+        <input type="date" id="startDate1" value="2024-07-05">
     </div>
     <div class="input-group">
         <label for="endDate1">Eid:</label>
@@ -313,7 +322,7 @@
     </div>
     <div class="input-group">
         <label for="startDate2">Start:</label>
-        <input type="date" id="startDate2" value="2024-07-04">
+        <input type="date" id="startDate2" value="2024-07-05">
     </div>
     <div class="input-group">
         <label for="endDate2">Today:</label>
@@ -442,16 +451,16 @@
         
         
         output += "</tbody></table><br><hr>";
-        
-        output += `<h2>মোট হিসাব সমূহ:</h2>
-        <p>মোট খরচ: <span class="number">${totalText4}</span><span class="dot">***</span></p>
-        <p>মোট মাল: <span class="number">${totalText2 + totalText3}</span><span class="dot">***</span></p>
-        <p>মোট হাফ: <span class="number">${totalText2}</span><span class="dot">***</span></p>
-        <p>মোট ফুল: <span class="number">${totalText3}</span><span class="dot">***</span></p>
-        <p>মোট আয়: <span class="number">${totalWork}</span><span class="dot">***</span></p>
-        <p>মোট পাওনা: <span class="number">${totalWork - totalText4}</span><span class="dot">***</span></p>
-        <p>মোট সপ্তাহ: <span class="number">${Object.keys(data).length}</span><span class="dot">***</span></p>
-        <button onclick="toggleVisibility()" class="showButton" id="showButton" ><i class="fa fa-eye"></button>`;     
+        //p tag সমূহ
+        output += `<div style="zoom: 1">
+        <h2>মোট হিসাব সমূহ:</h2><p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>
+        <p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>
+        <p>মোট হাফ: <span class="hidden-value">${totalText2}</span><span class="show-values">...</span></p>
+        <p>মোট ফুল: <span class="hidden-value">${totalText3}</span><span class="show-values">...</span></p>
+        <p>মোট আয়: <span class="hidden-value">${totalWork}</span><span class="show-values">...</span></p>
+         <p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>
+        <p>মোট সপ্তাহ: ${Object.keys(data).length}</p>
+        <button class="showButton" id="showButton" onclick="showValues()"><i class="fa fa-eye"></button></div>`; 
         
         document.getElementById("displayArea").innerHTML = output;
       } else {
@@ -515,7 +524,7 @@
   // Password Verification Logic
   function checkPassword() {
     const password = document.getElementById("password").value;
-    const correctPassword = "Nazrul"; // Replace with your actual password
+    const correctPassword = "0"; // Replace with your actual password
 
     if (password === correctPassword) {
       document.getElementById("passwordForm").style.display = "none";
@@ -530,7 +539,24 @@
       });
     }
   }
+function showValues() {
+    const hiddenValues = document.querySelectorAll('.hidden-value');
+    const showValues = document.querySelectorAll('.show-values');
 
+    hiddenValues.forEach(hiddenValue => {
+      hiddenValue.classList.add('show-values');
+      hiddenValue.classList.remove('hidden-value');
+    });
+
+    showValues.forEach(showValue => {
+      showValue.classList.remove('show-values');
+      showValue.classList.add('hidden-value');
+    });
+
+    // Remove the Show Values button
+    const showButton = document.getElementById('showButton');
+    
+  }
 
 
   window.onload = () => {
@@ -604,19 +630,5 @@
     // পেজ লোড হলেই আজকের তারিখ সেট করা
     window.onload = initCalculator; 
 </script>
-      <script>
-      function toggleVisibility() {
-        var dot = document.querySelector('.dot');
-        var number = document.querySelector('.number');
-        
-        if (dot.style.display === 'none') {
-          dot.style.display = 'block';
-          number.style.display = 'none';
-        } else {
-          dot.style.display = 'none';
-          number.style.display = 'block';
-        }
-      }
-      </script>
 </body>
   </htm
