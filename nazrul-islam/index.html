@@ -539,24 +539,7 @@
       });
     }
   }
-function showValues() {
-    const hiddenValues = document.querySelectorAll('.hidden-value');
-    const showValues = document.querySelectorAll('.show-values');
 
-    hiddenValues.forEach(hiddenValue => {
-      hiddenValue.classList.add('show-values');
-      hiddenValue.classList.remove('hidden-value');
-    });
-
-    showValues.forEach(showValue => {
-      showValue.classList.remove('show-values');
-      showValue.classList.add('hidden-value');
-    });
-
-    // Remove the Show Values button
-    const showButton = document.getElementById('showButton');
-    
-  }
 
 
   window.onload = () => {
