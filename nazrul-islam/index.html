@@ -31,7 +31,7 @@
      margin: 20px;
      border: 0.5px dotted gray;
      padding: 6px;
-     zoom: 1.2;
+     zoom: ;
      color: ;
     }
 
@@ -437,15 +437,17 @@
         
         output += "</tbody></table><br><hr>";
         
-        output += `<div style="zoom: 1">
-        <h2>মোট হিসাব সমূহ:</h2><p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>
-        <p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>
-        <p>মোট হাফ: <span class="hidden-value">${totalText2}</span><span class="show-values">...</span></p>
-        <p>মোট ফুল: <span class="hidden-value">${totalText3}</span><span class="show-values">...</span></p>
-        <p>মোট আয়: <span class="hidden-value">${totalWork}</span><span class="show-values">...</span></p>
-        <p>মোট পাওনা: <span class="hidden-value">${totalWork - totalText4}</span><span class="show-values">...</span></p>
-        <p>মোট সপ্তাহ: ${Object.keys(data).length}</p>
-        <button class="showButton" id="showButton" onclick="showValues()"><i class="fa fa-eye"></button></div>`; 
+        output += `<div>
+        <h2>মোট হিসাব সমূহ:</h2>
+        <p>মোট খরচ: <span class="number">${totalText4}</span><span class="dot">***</span></p>
+        <p>মোট মাল: <span class="number">${totalText2 + totalText3}</span><span class="dot">***</span></p>
+        <p>মোট হাফ: <span class="number">${totalText2}</span><span class="dot">***</span></p>
+        <p>মোট ফুল: <span class="number">${totalText3}</span><span class="dot">***</span></p>
+        <p>মোট আয়: <span class="number">${totalWork}</span><span class="dot">***</span></p>
+        <p>মোট পাওনা: <span class="number">${totalWork - totalText4}</span><span class="dot">***</span></p>
+        <p>মোট সপ্তাহ: <span class="number">${Object.keys(data).length}</span><span class="dot">***</span></p>
+        <button onclick="toggleVisibility()" class="showButton" id="showButton" ><i class="fa fa-eye"></button>
+        </div>`; 
         
         document.getElementById("displayArea").innerHTML = output;
       } else {
@@ -598,5 +600,19 @@
     // পেজ লোড হলেই আজকের তারিখ সেট করা
     window.onload = initCalculator; 
 </script>
+      <script>
+      function toggleVisibility() {
+        var dot = document.querySelector('.dot');
+        var number = document.querySelector('.number');
+        
+        if (dot.style.display === 'none') {
+          dot.style.display = 'block';
+          number.style.display = 'none';
+        } else {
+          dot.style.display = 'none';
+          number.style.display = 'block';
+        }
+      }
+      </script>
 </body>
   </htm
