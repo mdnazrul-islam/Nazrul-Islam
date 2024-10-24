@@ -105,10 +105,8 @@
       
     }
 
-    #displayArea > p { /* Style for the summary data */
-      font-size: 20px;
-      margin-top: px;
-      font-weight: 500;
+    #displayArea > p {
+      
     }
     
       #myForm {
@@ -438,7 +436,7 @@
         
         output += "</tbody></table><br><hr>";
         //p tag সমূহ
-        output += `<div style="zoom: ">
+        output += `<div style="zoom: ;">
         <h2>মোট হিসাব সমূহ:</h2><p>মোট খরচ: <span class="hidden-value">${totalText4}</span><span class="show-values">...</span></p>
         <p>মোট মাল: <span class="hidden-value">${totalText2 + totalText3}</span><span class="show-values">...</span></p>
         <p>মোট হাফ: <span class="hidden-value">${totalText2}</span><span class="show-values">...</span></p>
@@ -510,7 +508,7 @@
   // Password Verification Logic
   function checkPassword() {
     const password = document.getElementById("password").value;
-    const correctPassword = "0"; // Replace with your actual password
+    const correctPassword = "Nazrul"; // Replace with your actual password
 
     if (password === correctPassword) {
       document.getElementById("passwordForm").style.display = "none";
