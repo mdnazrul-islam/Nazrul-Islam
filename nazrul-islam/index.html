@@ -454,13 +454,13 @@
         //p tag সমূহ
         output += `<div>
         <h2>মোট হিসাব সমূহ:</h2>
+        <p>মোট আয়: <span class="number">${totalWork}</span><span class="dot">***</span></p>
         <p>মোট খরচ: <span class="number">${totalText4}</span><span class="dot">***</span></p>
+        <p>মোট পাওনা: <span class="number">${totalWork - totalText4}</span><span class="dot">***</span></p>
         <p>মোট মাল: <span class="number">${totalText2 + totalText3}</span><span class="dot">***</span></p>
         <p>মোট হাফ: <span class="number">${totalText2}</span><span class="dot">***</span></p>
         <p>মোট ফুল: <span class="number">${totalText3}</span><span class="dot">***</span></p>
-        <p>মোট আয়: <span class="number">${totalWork}</span><span class="dot">***</span></p>
-         <p>মোট পাওনা: <span class="number">${totalWork - totalText4}</span><span class="dot">***</span></p>
-          <p>মোট সপ্তাহ:<span class="number"> ${Object.keys(data).length}</span><span class="dot">***</span></p>
+        <p>মোট সপ্তাহ:<span class="number"> ${Object.keys(data).length}</span><span class="dot">***</span></p>
           
         <button class="showButton" id="showButton" onclick="toggleVisibility()"><i class="fa fa-eye"></button></div>`; 
         
