@@ -446,11 +446,16 @@
           totalText3 += parseFloat(value.text3);
           totalWork += value.text6;  // Use text6 for income
           output += `<tr><td>${value.text1}</td><td>${value.text2}</td><td>${value.text3}</td><td>${value.text6}</td><td>${value.text4}</td><td>${value.text5}</td></tr>`;
-        }
-
-        
-        
+           }  
         output += "</tbody></table><br><hr>";
+
+
+        const fixedStartDate = new Date('2024-07-08'); // 21-09-2024
+      const today = new Date(); 
+      const daysDiff = Math.floor((today - fixedStartDate) / (1000 * 60 * 60 * 24));
+
+      // Calculate the average income per day
+      const averageIncome = totalWork / daysDiff;
         //p tag সমূহ
         output += `<div>
         <h2>মোট হিসাব সমূহ:</h2>
@@ -461,6 +466,7 @@
         <p>মোট হাফ: <span class="number">${totalText2}</span><span class="dot">***</span></p>
         <p>মোট ফুল: <span class="number">${totalText3}</span><span class="dot">***</span></p>
         <p>মোট সপ্তাহ:<span class="number"> ${Object.keys(data).length}</span><span class="dot">***</span></p>
+        <p>প্রতিদিনের আয়: <span class="number">${averageIncome.toFixed(2)}</span><span class="dot">***</span></p>
           
         <button class="showButton" id="showButton" onclick="toggleVisibility()"><i class="fa fa-eye"></button></div>`; 
         
