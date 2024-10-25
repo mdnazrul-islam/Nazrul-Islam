@@ -5,7 +5,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/1723314004088~2.jpg?alt=media&token=8f6c0518-f20f-4070-9a91-2738f59df98c" title="" type="" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/1723314004088~2.jpg?alt=media&token=8f6c0518-f20f-4070-9a91-2738f59df98c" title="" type="" />
   <style>
     body {
       font-family: serif;
@@ -14,6 +15,7 @@
       padding: 0;
       text-align: center;
       zoom: 2.8;
+      background: linear-gradient(to bottom right, #c8ffd5, #ffcfcf);
     }
 
     h2 {
@@ -32,7 +34,8 @@
       margin: 20px auto;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      width: %;
+      width: ;
+      background-color: #fff;
     }
 
     label {
@@ -79,7 +82,7 @@
       width: 70%;
       margin: 10px auto;
       border-collapse: collapse;
-      background-color: #fff;
+      background-color: none;
       border-radius: ;
       box-shadow: 0px 0px 5px ,
                    -0px -0px 5px;
@@ -137,12 +140,12 @@ img{
         height: 80px;
         width: 80px;
         padding: 2.5px;
-        background-color: white;
+        margin-top: 70px;
         border-radius: 50%;
         box-shadow: 1px 1px 20px ,
                    -1px -1px 20px ;
         margin-top: 20px;
-        
+        background: linear-gradient(to bottom right, #c8ffd5, #ffcfcf);
       }
       .pm{
         padding-bottom: 14px;
@@ -177,10 +180,48 @@ img{
        padding: 5px;
        margin-left: 5px;
       }
+          .showButton {
+        background-color: #4CAF50;
+        color: white;
+        padding: 7px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 25px;
+        position: relative;
+        left: 80%;
+        right: 10%;
+      }
+    .bismillah{
+      position: fixed;
+      left: 15%;
+      box-shadow: 0px 0px 10px ,
+                   -0px -0px 10px;
+      border: 1px solid ;
+      background: linear-gradient(to bottom right, #c8ffd5, #ffcfcf);
+      width: 240px;
+      padding: 5px;
+      padding-top: 40px;
+      border-radius: 8px;
+      margin-top: -30px;
+     
+    }
+    
+          .dot{
+        display: ;
+        margin-left: 15px;
+      }
+      .number{
+        display: none;
+        font-weight: bold;
+        margin-left: 15px;
+      }
      
   </style>
 </head>
 <body>
+    <h2 class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>  
+  
    <img id="clickTarget" src="https://firebasestorage.googleapis.com/v0/b/income-details-7831b.appspot.com/o/1723314004088~2.jpg?alt=media&token=8f6c0518-f20f-4070-9a91-2738f59df98c" alt="" />
   <div class="pm">
     Md Shahin Islam
@@ -330,12 +371,13 @@ function displayData() {
       });
 
       output += "</tbody></table><br><hr><h2>মোট হিসাব সমূহ:</h2>";
-      output += `<p>মোট খরচ: ${totalText4}</p>`;
-      output += `<p>মোট মাল: ${totalMal}</p>`; // Display totalMal 
-      output += `<p>মোট আয়: ${totalText6}</p>`;
-      output += `<p>মোট পাওনা: ${ totalText6 - totalText4 }</p>`;
-      output += `<p>মোট সপ্তাহ: ${Object.keys(data).length}</p>`; // Count the number of data entries
+      output += `<p>মোট খরচ: <span class="number"> ${totalText4}</span><span class="dot">***</span></p>`;
+      output += `<p>মোট মাল: <span class="number"> ${totalMal}</span><span class="dot">***</span></p>`; // Display totalMal 
+      output += `<p>মোট আয়:<span class="number"> ${totalText6}</span><span class="dot">***</span></p>`;
+      output += `<p>মোট পাওনা:<span class="number"> ${ totalText6 - totalText4 }</span><span class="dot">***</span></p>`;
+      output += `<p>মোট সপ্তাহ:<span class="number"> ${Object.keys(data).length}</span><span class="dot">***</span></p>`; // Count the number of data entries
 
+      output += `<button class="showButton" id="showButton" onclick="toggleVisibility()"><i class="fa fa-eye"></button></div>`; 
       document.getElementById("displayArea").innerHTML = output;
     } else {
       document.getElementById("displayArea").innerHTML = "No data found.";
@@ -364,5 +406,28 @@ function displayData() {
       //displayData();
     }
   </script>
+      <script>
+
+        function toggleVisibility() {
+    var dots = document.querySelectorAll('.dot');
+    var numbers = document.querySelectorAll('.number');
+    
+    dots.forEach(dot => {
+      if (dot.style.display === 'none') {
+        dot.style.display = 'block';
+      } else {
+        dot.style.display = 'none';
+      }
+    });
+
+    numbers.forEach(number => {
+      if (number.style.display === 'block') {
+        number.style.display = 'none';
+      } else {
+        number.style.display = 'block';
+      }
+    });
+  }
+      </script>
 </body>
      </html
