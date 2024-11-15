@@ -503,7 +503,7 @@
 
   function saveData() {
     const text = textArea.value;
-    database.ref('textData').set(text)
+    database.ref('textData/text').set(text)
       .then(() => {
         Swal.fire({
           icon: 'success',
@@ -523,7 +523,7 @@
   }
 
   // Load text from database on page load
-  database.ref('textData').on('value', (snapshot) => {
+  database.ref('textData/text').on('value', (snapshot) => {
     const text = snapshot.val();
     if (text) {
       textArea.value = text;
