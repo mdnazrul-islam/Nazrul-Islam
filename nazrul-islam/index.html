@@ -314,15 +314,15 @@
 
     <div class="input-group">
         <label for="startDate1">Start:</label>
-        <input type="date" id="startDate1" value="2024-07-05">
+        <input type="date" id="startDate1" value="2025-04-28">
     </div>
     <div class="input-group">
         <label for="endDate1">Eid:</label>
-        <input type="date" id="endDate1" value="2025-04-02">
+        <input type="date" id="endDate1" value="2025-05-06">
     </div>
     <div class="input-group">
         <label for="startDate2">Start:</label>
-        <input type="date" id="startDate2" value="2024-07-03">
+        <input type="date" id="startDate2" value="2025-04-08">
     </div>
     <div class="input-group">
         <label for="endDate2">Today:</label>
@@ -334,7 +334,7 @@
     </div>
     <div class="input-group">
         <label for="endDate3">Eid:</label>
-        <input type="date" id="endDate3" value="2025-04-02">
+        <input type="date" id="endDate3" value="2025-05-06">
     </div>
 
     <button onclick="calculateWeeks()">Calculate Weeks</button>
@@ -405,7 +405,7 @@
       text6: text6 // Include text6 in the data object
     };
 
-    database.ref("Nazrul/Ramadan's 2024-25").push(data)
+    database.ref("Nazrul/5, Qurbani's 2025").push(data)
       .then(() => {
         Swal.fire({
           icon: 'success',
@@ -425,7 +425,7 @@
       });
   }
 
-  function displayData(folderPath = "Nazrul/Ramadan's 2024-25") {
+  function displayData(folderPath = "Nazrul/5, Qurbani's 2025") {
     const dataRef = database.ref(folderPath);
 
     dataRef.on("value", (snapshot) => {
