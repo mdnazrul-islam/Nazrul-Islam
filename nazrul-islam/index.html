@@ -314,15 +314,15 @@
 
     <div class="input-group">
         <label for="startDate1">Start:</label>
-        <input type="date" id="startDate1" value="2025-04-26">
+        <input type="date" id="startDate1" value="2025-07-01">
     </div>
     <div class="input-group">
         <label for="endDate1">Eid:</label>
-        <input type="date" id="endDate1" value="2025-06-06">
+        <input type="date" id="endDate1" value="2026-03-20">
     </div>
     <div class="input-group">
         <label for="startDate2">Start:</label>
-        <input type="date" id="startDate2" value="2025-04-24">
+        <input type="date" id="startDate2" value="2025-07-01">
     </div>
     <div class="input-group">
         <label for="endDate2">Today:</label>
@@ -334,7 +334,7 @@
     </div>
     <div class="input-group">
         <label for="endDate3">Eid:</label>
-        <input type="date" id="endDate3" value="2025-06-03">
+        <input type="date" id="endDate3" value="2026-03-20">
     </div>
 
     <button onclick="calculateWeeks()">Calculate Weeks</button>
@@ -425,7 +425,7 @@
       });
   }
 
-  function displayData(folderPath = "Nazrul/5, Qurbani's 2025") {
+  function displayData(folderPath = "Nazrul/6, Ramadan's 2025-26") {
     const dataRef = database.ref(folderPath);
 
     dataRef.on("value", (snapshot) => {
