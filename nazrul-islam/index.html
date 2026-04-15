@@ -334,7 +334,7 @@
     </div>
     <div class="input-group">
         <label for="endDate3">Eid:</label>
-        <input type="date" id="endDate3" value="2026-03-20">
+        <input type="date" id="endDate3" value="2026-05-28">
     </div>
 
     <button onclick="calculateWeeks()">Calculate Weeks</button>
@@ -359,7 +359,7 @@
     projectId: "income-details-7831b",
     storageBucket: "income-details-7831b.appspot.com",
     messagingSenderId: "879276775958",
-    appId: "1:879276775958:web:14546def9134efc5c4b337"
+    appId: "1:879276775958:web:14Ramadan's4efc5c4b337"
   };
 
   const app = firebase.initializeApp(firebaseConfig);
@@ -405,7 +405,7 @@
       text6: text6 // Include text6 in the data object
     };
 
-    database.ref("Nazrul/6, Ramadan's 2026").push(data)
+    database.ref("Nazrul/7, Qurbani's 2026").push(data)
       .then(() => {
         Swal.fire({
           icon: 'success',
@@ -425,7 +425,7 @@
       });
   }
 
-  function displayData(folderPath = "Nazrul/6, Qurbani's 2026") {
+  function displayData(folderPath = "Nazrul/7, Qurbani's 2026") {
     const dataRef = database.ref(folderPath);
 
     dataRef.on("value", (snapshot) => {
@@ -450,7 +450,7 @@
         output += "</tbody></table><br><hr>";
 
 
-        const fixedStartDate = new Date('2025-07-05'); // Start
+        const fixedStartDate = new Date('2026-04-11'); // Start
       const today = new Date(); 
       const daysDiff = Math.floor((today - fixedStartDate) / (1000 * 60 * 60 * 24));
 
